@@ -36,7 +36,7 @@ export class StorageService {
     method: keyof DecorateStorage,
     { key, value }: StorageProps<T>
   ): StorageProps<T> {
-    let result = { key, value };
+    let result = Object.assign({}, { key, value });
     this._decorators?.forEach((decorator) => {
       result = decorator[method](result.key, result.value);
     });
