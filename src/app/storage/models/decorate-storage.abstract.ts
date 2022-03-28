@@ -1,6 +1,6 @@
 export interface DecorateStorage<T, K> {
   setProperty(key: string, value: K): T;
-  getPropety(key: string): K;
+  getPropety(key: string, value: K): K;
 }
 
 export abstract class DecorateStorage<

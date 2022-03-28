@@ -5,9 +5,9 @@ import { assert } from './utils';
 import { APP_STORAGE_DECORATORS } from './tokens';
 import { DecorateStorage, IStorage } from './models';
 
-interface StorageProps {
+interface StorageProps<T> {
   key: string;
-  value?: string | object;
+  value: T;
 }
 
 @Injectable()
@@ -27,17 +27,18 @@ export class StorageService {
   }
 
   public get<T>(key: string): T {
-    const result = this._iterateDecorators('getPropety', { key });
-    return this._storage.get(result.key);
+    const value = this._storage.get(key);
+    const result = this._iterateDecorators('getPropety', { key, value });
+    return result.value;
   }
 
-  private _iterateDecorators(
+  private _iterateDecorators<T>(
     method: keyof DecorateStorage,
-    { key, value }: StorageProps
-  ): StorageProps {
+    { key, value }: StorageProps<T>
+  ): StorageProps<T> {
     let result = { key, value };
     this._decorators?.forEach((decorator) => {
-      result = decorator[method](key, value);
+      result = decorator[method](result.key, result.value);
     });
     return result;
   }

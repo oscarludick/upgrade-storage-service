@@ -14,11 +14,11 @@ export class LogService implements DecorateStorage {
       value,
     };
   }
-  getPropety(key: string) {
-    console.log(`Retriving ${key}`);
+  getPropety(key: string, value: any) {
+    console.log(`Retriving ${key} with ${value}`);
     return {
       key,
-      value: '',
+      value,
     };
   }
 }
