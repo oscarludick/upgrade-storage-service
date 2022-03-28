@@ -6,7 +6,7 @@ import {
 
 import { IStorage, StorageProvider } from '../models';
 
-export const LocalStorageImport: {
+export const Angular2LocalStorage: {
   imports: ModuleWithProviders<LocalStorageModule>[];
   providers: StorageProvider<LocalStorageService>;
 } = {

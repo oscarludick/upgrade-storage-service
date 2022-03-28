@@ -6,21 +6,22 @@ import { provideDecorators } from './providers';
 import { DecorateStorage, StorageProvider } from './models';
 
 @NgModule({})
-export class _StorageModule {}
-
 export class StorageModule {
   static forRoot(config: {
     imports: any[];
     providers: StorageProvider<any>;
     decorators?: Array<Type<DecorateStorage>>;
-  }): _StorageModule {
-    return NgModule({
-      imports: [],
+  }): ModuleWithProviders<StorageModule> {
+    NgModule({
+      imports: config.imports,
+    })(StorageModule);
+    return {
+      ngModule: StorageModule,
       providers: [
         config.providers,
         provideDecorators(config.decorators || []),
         StorageService,
       ],
-    })(_StorageModule);
+    };
   }
 }
