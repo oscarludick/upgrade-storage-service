@@ -5,7 +5,7 @@ import { IStorage, StorageProvider } from '../models';
 @Injectable()
 export class BrowserStorageService extends IStorage<void, string> {
   set(key: string, value: string): void {
-    localStorage.setItem(key, value);
+    localStorage.setItem(key, `${value}`);
   }
 
   get(key: string): string {
