@@ -8,9 +8,9 @@ import { StorageModule, BrowserStorage } from './storage';
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserStorage.imports,
     StorageModule.forRoot({
-      storageProvider: BrowserStorage.providers,
+      imports: BrowserStorage.imports,
+      providers: BrowserStorage.providers,
     }),
   ],
   declarations: [AppComponent],

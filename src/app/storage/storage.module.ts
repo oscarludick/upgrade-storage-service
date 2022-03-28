@@ -6,18 +6,21 @@ import { provideDecorators } from './providers';
 import { DecorateStorage, StorageProvider } from './models';
 
 @NgModule({})
+export class _StorageModule {}
+
 export class StorageModule {
-  static forRoot<T>(config: {
-    storageProvider: StorageProvider<T>;
+  static forRoot(config: {
+    imports: any[];
+    providers: StorageProvider<any>;
     decorators?: Array<Type<DecorateStorage>>;
-  }): ModuleWithProviders<StorageModule> {
-    return {
-      ngModule: StorageModule,
+  }): _StorageModule {
+    return NgModule({
+      imports: [],
       providers: [
-        config.storageProvider,
+        config.providers,
         provideDecorators(config.decorators || []),
         StorageService,
       ],
-    };
+    })(_StorageModule);
   }
 }
