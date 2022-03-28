@@ -10,5 +10,6 @@ import { StorageService } from './storage/storage.service';
 export class AppComponent {
   constructor(private storageService: StorageService) {
     this.storageService.set('test', 'testValue');
+    console.log(this.storageService.get('test'));
   }
 }

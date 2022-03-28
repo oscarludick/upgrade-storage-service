@@ -14,7 +14,7 @@ import { StorageModule, Angular2LocalStorage, BrowserStorage } from './storage';
     StorageModule.forRoot({
       imports: Angular2LocalStorage.imports,
       providers: Angular2LocalStorage.providers,
-      decorators: [EncryptService, LogService],
+      decorators: [LogService, EncryptService],
     }),
   ],
   declarations: [AppComponent],
